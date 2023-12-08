@@ -15,10 +15,10 @@ def cmd_group():
 def plot():
     print('PLOTTING')
     measurements = DiodeExperiment(port = "ASRL5::INSTR")
-    U_solarcell_list, I_solarcell_list = measurements.scan(start = 485, stop = 530)
-    print(f"{U_solarcell_list=}")
-
-    plt.scatter(U_solarcell_list,I_solarcell_list)
+    U_solarcell_list, I_solarcell_list, error_I_solarcell_list, error_U_solarcell_list = measurements.scan(start = 485, stop = 530, number = 5)
+    print(len(I_solarcell_list))
+    print(len(error_U_solarcell_list))
+    plt.errorbar(U_solarcell_list,I_solarcell_list, xerr =error_U_solarcell_list, yerr = error_I_solarcell_list, fmt = '.' )
     plt.xlabel("Voltage (V)")
     plt.ylabel("Current (I)")
     plt.show()
