@@ -19,7 +19,7 @@ class DiodeExperiment:
 
         self.device = ArduinoVISADevice(port = port)
     
-    def scan_(self,start,stop):
+    def scan(self,start,stop):
         for i in range(start,stop):
             
             self.device.set_output_value(i)
@@ -35,6 +35,8 @@ class DiodeExperiment:
             self.I_solarcell_list.append(self.I_solarcell)
             
         return self.U_solarcell_list, self.I_solarcell_list
+
+
 
     def convert_voltage_adc(self, voltage):
         """Converts voltage to adc.
