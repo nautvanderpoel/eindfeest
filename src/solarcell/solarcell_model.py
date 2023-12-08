@@ -1,4 +1,4 @@
-from solarcell.solarcell_view import ArduinoVISADevice
+from solarcell.solcarcell_controller import ArduinoVISADevice
 import numpy as np 
 
 class DiodeExperiment:
@@ -22,9 +22,9 @@ class DiodeExperiment:
     def scan_(self,start,stop):
         for i in range(start,stop):
             
-            self.set_output_value(i)
-            self.ch2 = self.device.get_input_value_voltage(2)
-            self.ch1 = self.device.get_input_value_voltage(1)
+            self.device.get_input_value(i)
+            self.ch2 = self.device.get_input_voltage(channel = 2)
+            self.ch1 = self.device.get_input_voltage(channel = 1)
 
             self.U_solar_cell_list.append(3*self.ch2)
             self.U_resistor_list.append(self.ch1)
@@ -46,7 +46,7 @@ class DiodeExperiment:
         Returns:
             adc (int): adc
         """
-        self.adc = math.floor((1023/3.3)*voltage)
+        self.adc = np.floor((1023/3.3)*voltage)
         return self.adc 
 
     def close_device(self):
@@ -55,6 +55,4 @@ class DiodeExperiment:
         Returns:
             function: close function function from controller
         """
-        return self.device.close_device1()
-
-
+        return self.device.close_device()
