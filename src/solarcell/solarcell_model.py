@@ -34,24 +34,27 @@ class DiodeExperiment:
                     self.U_solarcell_list.append(3*self.ch1) #dit naar ch1?
                     self.U_resistor_list.append(self.ch2) #dit naar ch2?
 
-                    # calculates the current using ohm's law    
-                    for l in range(len(self.U_resistor_list)):
-                        self.I_solarcell = self.U_resistor_list[l]/4.7
-                        self.I_solarcell_list.append(self.I_solarcell)
+                # calculates the current using ohm's law    
+                for l in range(len(self.U_resistor_list)):
+                    self.I_solarcell = self.U_resistor_list[l]/4.7
+                    self.I_solarcell_list.append(self.I_solarcell)
 
 
+                print(f'{len(self.I_solarcell_list)=}')
+                print(f'{len(self.U_solarcell_list)=}')
+                self.U_solarcell_list_mean.append(np.mean(self.U_solarcell_list))
+                self.I_solarcell_list_mean.append(np.mean(self.I_solarcell_list))
+                print(f'{len(self.I_solarcell_list_mean)=}')
+                print(f'{len(self.U_solarcell_list_mean)=}')
 
-                    self.U_solarcell_list_mean.append(np.mean(self.U_solarcell_list))
-                    self.I_solarcell_list_mean.append(np.mean(self.I_solarcell_list))
+                # calculates the deviation of the central values
+                self.error_U_solarcell_list.append(np.std(self.U_solarcell_list)/(len(self.U_solarcell_list)**0.5))
+                self.error_I_solarcell_list.append(np.std(self.I_solarcell_list)/(len(self.I_solarcell_list)**0.5))
 
-                    # calculates the deviation of the central values
-                    self.error_U_solarcell_list.append(np.std(self.U_solarcell_list)/(len(self.U_solarcell_list)**0.5))
-                    self.error_I_solarcell_list.append(np.std(self.I_solarcell_list)/(len(self.I_solarcell_list)**0.5))
-
-            
-                    self.U_solarcell_list.clear()
-                    self.U_resistor_list.clear()
-                    self.I_solarcell_list.clear()
+        
+                self.U_solarcell_list.clear()
+                self.U_resistor_list.clear()
+                self.I_solarcell_list.clear()
                 
 
 
