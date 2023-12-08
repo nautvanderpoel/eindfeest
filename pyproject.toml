@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "eindfeest"
+name = "solarcell"
 version = "0.1.0"
 description = ""
 authors = ["mustafa9812 <135598930+mustafa9812@users.noreply.github.com>"]
@@ -7,13 +7,10 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-<<<<<<< HEAD
 nupy = "^0.1.1"
-=======
 click = "^8.1.7"
 matplotlib = "^3.8.2"
 pyvisa = "^1.14.1"
->>>>>>> 62aca9c120dac20a7d94ba2d46cda507eae5bff0
 numpy = "^1.26.2"
 
 

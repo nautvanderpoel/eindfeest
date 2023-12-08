@@ -36,8 +36,6 @@ class DiodeExperiment:
             
         return self.U_solarcell_list, self.I_solarcell_list
 
-
-
     def convert_voltage_adc(self, voltage):
         """Converts voltage to adc.
 

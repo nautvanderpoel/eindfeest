@@ -1,4 +1,4 @@
-from solarcell_model import DiodeExperiment, find_ports
+from solarcell.solarcell_model import DiodeExperiment
 import click
 import csv
 import matplotlib.pyplot as plt
@@ -7,14 +7,14 @@ import matplotlib.pyplot as plt
 def cmd_group():
     pass
 
-@cmd_group.command(help= "gives list of all available ports for connected arduino device")
-def list():
-    """function that returns back the available ports to the arduino device from the model
+# @cmd_group.command(help= "gives list of all available ports for connected arduino device")
+# def list():
+#     """function that returns back the available ports to the arduino device from the model
 
-    Returns:
-        list: available ports
-    """
-    return print(find_ports())
+#     Returns:
+#         list: available ports
+#     """
+#     return print(find_ports())
 
     
 @cmd_group.command()
