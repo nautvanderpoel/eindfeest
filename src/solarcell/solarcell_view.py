@@ -14,10 +14,13 @@ def cmd_group():
 # @cmd_group.command()
 def plot():
     print('PLOTTING')
-    measurements = DiodeExperiment(port = "ASRL9::INSTR")
-    U_solarcell_list, I_solarcell_list = measurements.scan(start = 0, stop = 5)
+    measurements = DiodeExperiment(port = "ASRL5::INSTR")
+    U_solarcell_list, I_solarcell_list = measurements.scan(start = 485, stop = 530)
+    print(f"{U_solarcell_list=}")
 
-    plt.plot(I_solarcell_list,U_solarcell_list)
+    plt.scatter(U_solarcell_list,I_solarcell_list)
+    plt.xlabel("Voltage (V)")
+    plt.ylabel("Current (I)")
     plt.show()
 
 plot()
