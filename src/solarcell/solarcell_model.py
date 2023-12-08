@@ -1,5 +1,6 @@
 from solarcell.solarcell_view import ArduinoVISADevice
 import numpy as np 
+import math
 
 class DiodeExperiment:
     """This class extracts data from the device.
@@ -7,7 +8,6 @@ class DiodeExperiment:
     def __init__(self,port):
         """Here are all the used lists defined.
         """
-        # mean values of voltages and currents
         
         self.U_solarcell_list = []
         self.U_resistor_list = []
@@ -22,7 +22,7 @@ class DiodeExperiment:
     def scan_(self,start,stop):
         for i in range(start,stop):
             
-            self.set_output_value(i)
+            self.device.set_output_value(i)
             self.ch2 = self.device.get_input_value_voltage(2)
             self.ch1 = self.device.get_input_value_voltage(1)
 
@@ -31,10 +31,9 @@ class DiodeExperiment:
 
              # calculates the current using ohm's law    
         for l in range(len(self.U_resistor_list)):
-            self.I_solarcell_list = self.U_resistor_list[l]/220
-            self.I_solarcell.append(self.I_LED)
+            self.I_solarcell = self.U_resistor_list[l]/4.7
+            self.I_solarcell_list.append(self.I_solarcell)
             
-        
         return self.U_solarcell_list, self.I_solarcell_list
 
     def convert_voltage_adc(self, voltage):
