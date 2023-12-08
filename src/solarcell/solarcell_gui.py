@@ -37,11 +37,11 @@ class UserInterface(QtWidgets.QMainWindow):
 
             self.measurements = DiodeExperiment(port= self.ui.ports_combo.currentText())
 
-            self.LED_U_list, self.LED_I_list = self.measurements.scan_voltage(start = self.ui.voltage_start.value(), end = self.ui.voltage_end.value())
-            self.average_U, self.average_I, self.error_U, self.error_I = self.measurements.repeat_voltage(self.ui.voltage_start.value(), self.ui.voltage_end.value(), self.ui.repeats.value())
+            #self.LED_U_list, self.LED_I_list = self.measurements.scan_voltage(start = self.ui.voltage_start.value(), end = self.ui.voltage_end.value())
+            self.U_solarcell_list_mean, self.I_solarcell_list_mean, self.error_U_solarcell_list, self.error_I_solarcell_list = self.measurements.repeat_voltage(start = self.ui.voltage_start.value(), stop = self.ui.voltage_end.value(), number = self.ui.repeats.value())
 
-            self.ui.plot_widget.plot(self.average_U, self.average_I, symbol="o", symbolSize=5, pen=None)
-            error_bars = pg.ErrorBarItem(x=self.average_U, y=self.average_I, width=2 * np.array(self.error_U), height=2 * np.array(self.error_I))
+            self.ui.plot_widget.plot(self.U_solarcell_list_mean, self.I_solarcell_list_mean, symbol="o", symbolSize=5, pen=None)
+            error_bars = pg.ErrorBarItem(x=self.U_solarcell_list_mean, y=self.I_solarcell_list_mean, width=2 * np.array(self.error_U_solarcell_list), height=2 * np.array(self.error_I_solarcell_list))
             self.ui.plot_widget.setLabel("left", "Current I in amps")
             self.ui.plot_widget.setLabel("bottom", "Voltage U in volts")
             self.ui.plot_widget.addItem(error_bars)
