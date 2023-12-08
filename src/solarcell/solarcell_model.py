@@ -45,6 +45,7 @@ class DiodeExperiment:
                     self.I_solarcell = self.U_resistor_list[l]/4.7
                     self.I_solarcell_list.append(self.I_solarcell)
 
+                print(self.I_solarcell_list)
                 for r in range(len(self.I_solarcell_list)):
                     self.P_solarcell = self.I_solarcell_list[r]*self.U_solarcell_list[r]
                     self.P_solarcell_list.append(self.P_solarcell)
@@ -87,7 +88,7 @@ class DiodeExperiment:
         self.adc = np.floor((1023/3.3)*voltage)
         return self.adc 
 
-    def close_device(self):
+    def closing_device(self):
         """Closes device from controller
 
         Returns:
