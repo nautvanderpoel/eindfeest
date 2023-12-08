@@ -8,17 +8,23 @@ class DiodeExperiment:
     def __init__(self,port):
         """Here are all the used lists defined.
         """
-        
+        self.R_var_list = []
         self.U_solarcell_list = []
+        self.P_solarcell_list = []
+
         self.U_resistor_list = []
 
+        self.R_var_list_mean = []
         self.U_solarcell_list_mean = []
         self.I_solarcell_list_mean = []
+        self.P_solarcell_list_mean = []
 
         self.I_solarcell_list = []
 
+        self.error_R_var_list = []
         self.error_U_solarcell_list = []
         self.error_I_solarcell_list = []
+        self.error_P_solarcell_list = []
 
         self.device = ArduinoVISADevice(port = port)
     
@@ -39,15 +45,23 @@ class DiodeExperiment:
                     self.I_solarcell = self.U_resistor_list[l]/4.7
                     self.I_solarcell_list.append(self.I_solarcell)
 
+                for r in range(len(self.I_solarcell_list)):
+                    self.P_solarcell = self.I_solarcell_list[r]*self.U_solarcell_list[r]
+                    self.P_solarcell_list.append(self.P_solarcell)
 
-                print(f'{len(self.I_solarcell_list)=}')
-                print(f'{len(self.U_solarcell_list)=}')
+                    self.R_var = (self.U_solarcell_list[r] - self.U_resistor_list[r])/(self.I_solarcell_list[r])
+                    self.R_var_list.append(self.R_var)
+
+                self.R_var_list_mean.append(np.mean(self.R_var_list))
+                self.P_solarcell_list_mean.append(np.mean(self.P_solarcell_list))
                 self.U_solarcell_list_mean.append(np.mean(self.U_solarcell_list))
                 self.I_solarcell_list_mean.append(np.mean(self.I_solarcell_list))
-                print(f'{len(self.I_solarcell_list_mean)=}')
-                print(f'{len(self.U_solarcell_list_mean)=}')
+               
 
                 # calculates the deviation of the central values
+                self.error_P_solarcell_list.append(np.std(self.U_solarcell_list)/(len(self.P_solarcell_list)**0.5))
+                self.error_R_var_list.append(np.std(self.R_var_list))/(len(self.R_var_list)**0.5)
+
                 self.error_U_solarcell_list.append(np.std(self.U_solarcell_list)/(len(self.U_solarcell_list)**0.5))
                 self.error_I_solarcell_list.append(np.std(self.I_solarcell_list)/(len(self.I_solarcell_list)**0.5))
 
@@ -55,10 +69,11 @@ class DiodeExperiment:
                 self.U_solarcell_list.clear()
                 self.U_resistor_list.clear()
                 self.I_solarcell_list.clear()
-                
+                self.R_var_list.clear()
+                self.P_solarcell_list.clear()
 
 
-            return self.U_solarcell_list_mean, self.I_solarcell_list_mean, self.error_I_solarcell_list, self.error_U_solarcell_list
+            return self.U_solarcell_list_mean, self.I_solarcell_list_mean, self.error_I_solarcell_list, self.error_U_solarcell_list,self.R_var_list_mean, self.error_R_var_list, self.P_solarcell_list_mean, self.error_P_solarcell_list
 
     def convert_voltage_adc(self, voltage):
         """Converts voltage to adc.
