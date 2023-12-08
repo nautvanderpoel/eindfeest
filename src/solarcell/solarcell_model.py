@@ -1,4 +1,4 @@
-from solarcell.solcarcell_controller import ArduinoVISADevice
+from solarcell.solcarcell_controller import ArduinoVISADevice,list_devices
 import numpy as np 
 import math
 
@@ -79,3 +79,8 @@ class DiodeExperiment:
             function: close function function from controller
         """
         return self.device.close_device()
+
+def find_ports():
+    """function that returns back the list of devices called from controller
+    """
+    return list_devices()
