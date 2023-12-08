@@ -11,15 +11,13 @@ def cmd_group():
 # def list():
 #     """function that returns back the available ports to the arduino device from the model
 
-#     Returns:
-#         list: available ports
-#     """
-#     return print(find_ports())
-
-    
-@cmd_group.command()
+# @cmd_group.command()
 def plot():
-    measurements = DiodeExperiment
-    U_solarcell_list, I_solarcell_list = measurements.scan(0,1023)
+    print('PLOTTING')
+    measurements = DiodeExperiment(port = "ASRL9::INSTR")
+    U_solarcell_list, I_solarcell_list = measurements.scan(start = 0, stop = 5)
 
     plt.plot(I_solarcell_list,U_solarcell_list)
+    plt.show()
+
+plot()

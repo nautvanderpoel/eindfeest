@@ -20,14 +20,15 @@ class DiodeExperiment:
         self.device = ArduinoVISADevice(port = port)
     
     def scan(self,start,stop):
+        print(f'{start=}, {stop=}')
         for i in range(start,stop):
             
             self.device.set_output_value(i)
             self.ch2 = self.device.get_input_voltage(channel = 2)
             self.ch1 = self.device.get_input_voltage(channel = 1)
 
-            self.U_solar_cell_list.append(3*self.ch2)
-            self.U_resistor_list.append(self.ch1)
+            self.U_solarcell_list.append(3*self.ch1) #dit naar ch1?
+            self.U_resistor_list.append(self.ch2) #dit naar ch2?
 
              # calculates the current using ohm's law    
         for l in range(len(self.U_resistor_list)):
