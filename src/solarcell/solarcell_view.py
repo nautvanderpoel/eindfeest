@@ -15,3 +15,11 @@ def list():
         list: available ports
     """
     return print(find_ports())
+
+    
+@cmd_group.command()
+def plot():
+    measurements = DiodeExperiment
+    U_solarcell_list, I_solarcell_list = measurements.scan(0,1023)
+
+    plt.plot(I_solarcell_list,U_solarcell_list)
