@@ -23,3 +23,4 @@ def plot():
     U_solarcell_list, I_solarcell_list = measurements.scan(0,1023)
 
     plt.plot(I_solarcell_list,U_solarcell_list)
+    plt.show()
