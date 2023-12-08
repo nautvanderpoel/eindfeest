@@ -49,13 +49,13 @@ class DiodeExperiment:
                     self.error_I_solarcell_list.append(np.std(self.I_solarcell_list)/(len(self.I_solarcell_list)**0.5))
 
             
-                    # self.U_solarcell_list.clear()
-                    # self.U_resistor_list.clear()
-                    # self.I_solarcell_list.clear()
+                    self.U_solarcell_list.clear()
+                    self.U_resistor_list.clear()
+                    self.I_solarcell_list.clear()
                 
 
 
-            return self.U_solarcell_list, self.I_solarcell_list, self.error_I_solarcell_list, self.error_U_solarcell_list
+            return self.U_solarcell_list_mean, self.I_solarcell_list_mean, self.error_I_solarcell_list, self.error_U_solarcell_list
 
     def convert_voltage_adc(self, voltage):
         """Converts voltage to adc.

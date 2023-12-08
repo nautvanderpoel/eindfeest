@@ -15,10 +15,8 @@ def cmd_group():
 def plot():
     print('PLOTTING')
     measurements = DiodeExperiment(port = "ASRL5::INSTR")
-    U_solarcell_list, I_solarcell_list, error_I_solarcell_list, error_U_solarcell_list = measurements.scan(start = 485, stop = 530, number = 5)
-    print(len(I_solarcell_list))
-    print(len(error_U_solarcell_list))
-    plt.errorbar(U_solarcell_list,I_solarcell_list, xerr =error_U_solarcell_list, yerr = error_I_solarcell_list, fmt = '.' )
+    U_solarcell_list_mean, I_solarcell_list_mean, error_I_solarcell_list, error_U_solarcell_list = measurements.scan(start = 485, stop = 530, number = 5)
+    plt.errorbar(U_solarcell_list_mean,I_solarcell_list_mean, xerr =error_U_solarcell_list, yerr = error_I_solarcell_list, fmt = '.' )
     plt.xlabel("Voltage (V)")
     plt.ylabel("Current (I)")
     plt.show()
