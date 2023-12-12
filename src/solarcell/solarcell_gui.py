@@ -31,7 +31,7 @@ class UserInterface(QtWidgets.QMainWindow):
 
     @Slot()
     def plotUI(self):
-        """method that makes use of the model, in which a plot is made of the current and voltage with errors over LED when the user chooses a start- and endvoltage and amount of repeats in the spinbox
+        """method that makes use of the model, in which a plot is made of the current and voltage with errors over solarcell when the user chooses a start- and endvoltage and amount of repeats in the spinbox
         """
         try:
             self.ui.plot_widget.clear()
@@ -53,7 +53,7 @@ class UserInterface(QtWidgets.QMainWindow):
 
     @Slot()
     def plotPR(self):
-        """method that makes use of the model, in which a plot is made of the current and voltage with errors over LED when the user chooses a start- and endvoltage and amount of repeats in the spinbox
+        """method that makes use of the model, in which a plot is made of the power and resistance with errors over variable resistor when the user chooses a start- and endvoltage and amount of repeats in the spinbox
         """
         try:
             self.ui.plot_widget.clear()
