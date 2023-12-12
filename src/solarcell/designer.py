@@ -121,8 +121,8 @@ class Ui_MainWindow(object):
         self.repeats.setPrefix(QCoreApplication.translate("MainWindow", u"Repeats: ", None))
         self.ports_combo.setCurrentText("")
         self.ports_combo.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Choose port", None))
-        self.startUI_button.setText(QCoreApplication.translate("MainWindow", u"Start measurement U-I", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Start measurement P-R", None))
+        self.startUI_button.setText(QCoreApplication.translate("MainWindow", u"Start U-I measurement", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Start P-R measurement", None))
         self.save_button.setText(QCoreApplication.translate("MainWindow", u"Save data", None))
         self.portlabel.setText("")
     # retranslateUi

@@ -87,14 +87,14 @@
         <item>
          <widget class="QPushButton" name="startUI_button">
           <property name="text">
-           <string>Start measurement U-I</string>
+           <string>Start U-I measurement</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="pushButton">
           <property name="text">
-           <string>Start measurement P-R</string>
+           <string>Start P-R measurement</string>
           </property>
          </widget>
         </item>

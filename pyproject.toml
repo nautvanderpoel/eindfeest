@@ -18,6 +18,9 @@ pyqtgraph = "^0.13.3"
 pyside6 = "^6.6.1"
 
 
+[tool.poetry.group.dev.dependencies]
+nsp2visasim = "^1.3.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
@@ -30,3 +33,4 @@ shell = """
 pyside6-uic src/solarcell/graph.ui -o src/solarcell/designer.py
 """
 interpreter = ["posix", "powershell"]
+

@@ -23,26 +23,48 @@ class UserInterface(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
         self.ui.ports_combo.addItems(find_ports())
-        self.ui.start_button.clicked.connect(self.plot)
+        self.ui.startUI_button.clicked.connect(self.plotUI)
+        self.ui.pushButton.clicked.connect(self.plotPR)
         self.ui.save_button.clicked.connect(self.save_data)
 
         self.show()
 
     @Slot()
-    def plot(self):
+    def plotUI(self):
         """method that makes use of the model, in which a plot is made of the current and voltage with errors over LED when the user chooses a start- and endvoltage and amount of repeats in the spinbox
         """
         try:
             self.ui.plot_widget.clear()
 
             self.measurements = DiodeExperiment(port= self.ui.ports_combo.currentText())
-
         
             self.U_solarcell_list_mean, self.I_solarcell_list_mean, self.error_I_solarcell_list, self.error_U_solarcell_list, self.R_var_list_mean, self.error_R_var_list, self.P_solarcell_list_mean, self.error_P_solarcell_list = self.measurements.scan(start = self.ui.voltage_start.value(), stop = self.ui.voltage_end.value(), number = self.ui.repeats.value())
             self.ui.plot_widget.plot(self.U_solarcell_list_mean, self.I_solarcell_list_mean, symbol="o", symbolSize=5, pen=None)
             error_bars = pg.ErrorBarItem(x=np.array(self.U_solarcell_list_mean), y=np.array(self.I_solarcell_list_mean), width=2 * np.array(self.error_U_solarcell_list), height=2 * np.array(self.error_I_solarcell_list))
             self.ui.plot_widget.setLabel("left", "Current I in amps")
             self.ui.plot_widget.setLabel("bottom", "Voltage U in volts")
+            self.ui.plot_widget.addItem(error_bars)
+            self.ui.portlabel.setText("")
+
+        except:
+            self.ui.portlabel.setText("ERROR: corresponding port does not make a measurement, choose another port.")
+
+        self.device_close()
+
+    @Slot()
+    def plotPR(self):
+        """method that makes use of the model, in which a plot is made of the current and voltage with errors over LED when the user chooses a start- and endvoltage and amount of repeats in the spinbox
+        """
+        try:
+            self.ui.plot_widget.clear()
+
+            self.measurements = DiodeExperiment(port= self.ui.ports_combo.currentText())
+        
+            self.U_solarcell_list_mean, self.I_solarcell_list_mean, self.error_I_solarcell_list, self.error_U_solarcell_list, self.R_var_list_mean, self.error_R_var_list, self.P_solarcell_list_mean, self.error_P_solarcell_list = self.measurements.scan(start = self.ui.voltage_start.value(), stop = self.ui.voltage_end.value(), number = self.ui.repeats.value())
+            self.ui.plot_widget.plot(self.P_solarcell_list_mean, self.R_var_list_mean, symbol="o", symbolSize=5, pen=None)
+            error_bars = pg.ErrorBarItem(x=np.array(self.P_solarcell_list_mean), y=np.array(self.R_var_list_mean), width=2 * np.array(self.error_P_solarcell_list), height=2 * np.array(self.error_R_var_list))
+            self.ui.plot_widget.setLabel("left", "Power P in watt")
+            self.ui.plot_widget.setLabel("bottom", "Resistance R in ohm")
             self.ui.plot_widget.addItem(error_bars)
             self.ui.portlabel.setText("")
 
