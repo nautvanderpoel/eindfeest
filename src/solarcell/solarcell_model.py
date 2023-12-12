@@ -74,10 +74,8 @@ class DiodeExperiment:
                 self.R_var_list.clear()
                 self.P_solarcell_list.clear()
 
-                P_mean_max = np.max(np.array(self.P_solarcell_list_mean))
-                fill_factor = P_mean_max/0.5
-
-            return self.U_solarcell_list_mean, self.I_solarcell_list_mean, self.error_I_solarcell_list, self.error_U_solarcell_list,self.R_var_list_mean, self.error_R_var_list, self.P_solarcell_list_mean, self.error_P_solarcell_list, fill_factor
+          
+            return self.U_solarcell_list_mean, self.I_solarcell_list_mean, self.error_I_solarcell_list, self.error_U_solarcell_list,self.R_var_list_mean, self.error_R_var_list, self.P_solarcell_list_mean, self.error_P_solarcell_list
 
     def convert_voltage_adc(self, voltage):
         """Converts voltage to adc.
