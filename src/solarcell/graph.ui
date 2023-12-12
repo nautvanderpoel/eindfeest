@@ -33,6 +33,9 @@
           <property name="singleStep">
            <double>0.100000000000000</double>
           </property>
+          <property name="value">
+           <double>1.500000000000000</double>
+          </property>
          </widget>
         </item>
         <item>
@@ -47,7 +50,7 @@
            <double>0.100000000000000</double>
           </property>
           <property name="value">
-           <double>3.300000000000000</double>
+           <double>1.700000000000000</double>
           </property>
          </widget>
         </item>
@@ -82,9 +85,16 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="start_button">
+         <widget class="QPushButton" name="startUI_button">
           <property name="text">
-           <string>Start measurement</string>
+           <string>Start measurement U-I</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>Start measurement P-R</string>
           </property>
          </widget>
         </item>

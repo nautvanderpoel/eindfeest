@@ -44,6 +44,7 @@ class Ui_MainWindow(object):
         self.voltage_start.setObjectName(u"voltage_start")
         self.voltage_start.setMaximum(3.300000000000000)
         self.voltage_start.setSingleStep(0.100000000000000)
+        self.voltage_start.setValue(1.500000000000000)
 
         self.horizontalLayout.addWidget(self.voltage_start)
 
@@ -51,7 +52,7 @@ class Ui_MainWindow(object):
         self.voltage_end.setObjectName(u"voltage_end")
         self.voltage_end.setMaximum(3.300000000000000)
         self.voltage_end.setSingleStep(0.100000000000000)
-        self.voltage_end.setValue(3.300000000000000)
+        self.voltage_end.setValue(1.700000000000000)
 
         self.horizontalLayout.addWidget(self.voltage_end)
 
@@ -73,10 +74,15 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.ports_combo)
 
-        self.start_button = QPushButton(self.centralwidget)
-        self.start_button.setObjectName(u"start_button")
+        self.startUI_button = QPushButton(self.centralwidget)
+        self.startUI_button.setObjectName(u"startUI_button")
 
-        self.horizontalLayout_2.addWidget(self.start_button)
+        self.horizontalLayout_2.addWidget(self.startUI_button)
+
+        self.pushButton = QPushButton(self.centralwidget)
+        self.pushButton.setObjectName(u"pushButton")
+
+        self.horizontalLayout_2.addWidget(self.pushButton)
 
         self.save_button = QPushButton(self.centralwidget)
         self.save_button.setObjectName(u"save_button")
@@ -115,7 +121,8 @@ class Ui_MainWindow(object):
         self.repeats.setPrefix(QCoreApplication.translate("MainWindow", u"Repeats: ", None))
         self.ports_combo.setCurrentText("")
         self.ports_combo.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Choose port", None))
-        self.start_button.setText(QCoreApplication.translate("MainWindow", u"Start measurement", None))
+        self.startUI_button.setText(QCoreApplication.translate("MainWindow", u"Start measurement U-I", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Start measurement P-R", None))
         self.save_button.setText(QCoreApplication.translate("MainWindow", u"Save data", None))
         self.portlabel.setText("")
     # retranslateUi
