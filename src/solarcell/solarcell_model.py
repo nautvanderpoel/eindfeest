@@ -90,7 +90,7 @@ class DiodeExperiment:
         self.adc = np.floor((1023/3.3)*voltage)
         return self.adc 
 
-    def close_device(self):
+    def closing_device(self):
         """Closes device from controller
 
         Returns:
