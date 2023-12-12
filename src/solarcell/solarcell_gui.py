@@ -38,7 +38,7 @@ class UserInterface(QtWidgets.QMainWindow):
 
             self.measurements = DiodeExperiment(port= self.ui.ports_combo.currentText())
         
-            self.U_solarcell_list_mean, self.I_solarcell_list_mean, self.error_I_solarcell_list, self.error_U_solarcell_list, self.R_var_list_mean, self.error_R_var_list, self.P_solarcell_list_mean, self.error_P_solarcell_list = self.measurements.scan(start = self.ui.voltage_start.value(), stop = self.ui.voltage_end.value(), number = self.ui.repeats.value())
+            self.U_solarcell_list_mean, self.I_solarcell_list_mean, self.error_I_solarcell_list, self.error_U_solarcell_list, self.R_var_list_mean, self.error_R_var_list, self.P_solarcell_list_mean, self.error_P_solarcell_list,fill_factor = self.measurements.scan(start = self.ui.voltage_start.value(), stop = self.ui.voltage_end.value(), number = self.ui.repeats.value())
             self.ui.plot_widget.plot(self.U_solarcell_list_mean, self.I_solarcell_list_mean, symbol="o", symbolSize=5, pen=None)
             error_bars = pg.ErrorBarItem(x=np.array(self.U_solarcell_list_mean), y=np.array(self.I_solarcell_list_mean), width=2 * np.array(self.error_U_solarcell_list), height=2 * np.array(self.error_I_solarcell_list))
             self.ui.plot_widget.setLabel("left", "Current I in amps")

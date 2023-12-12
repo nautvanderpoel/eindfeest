@@ -67,15 +67,17 @@ class DiodeExperiment:
 
                 self.error_U_solarcell_list.append(np.std(self.U_solarcell_list)/(len(self.U_solarcell_list)**0.5))
                 self.error_I_solarcell_list.append(np.std(self.I_solarcell_list)/(len(self.I_solarcell_list)**0.5))
-        
+
                 self.U_solarcell_list.clear()
                 self.U_resistor_list.clear()
                 self.I_solarcell_list.clear()
                 self.R_var_list.clear()
                 self.P_solarcell_list.clear()
 
+                P_mean_max = np.max(np.array(self.P_solarcell_list_mean))
+                fill_factor = P_mean_max/0.5
 
-            return self.U_solarcell_list_mean, self.I_solarcell_list_mean, self.error_I_solarcell_list, self.error_U_solarcell_list,self.R_var_list_mean, self.error_R_var_list, self.P_solarcell_list_mean, self.error_P_solarcell_list
+            return self.U_solarcell_list_mean, self.I_solarcell_list_mean, self.error_I_solarcell_list, self.error_U_solarcell_list,self.R_var_list_mean, self.error_R_var_list, self.P_solarcell_list_mean, self.error_P_solarcell_list, fill_factor
 
     def convert_voltage_adc(self, voltage):
         """Converts voltage to adc.
