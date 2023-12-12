@@ -45,12 +45,15 @@ class DiodeExperiment:
                     self.I_solarcell = self.U_resistor_list[l]/4.7
                     self.I_solarcell_list.append(self.I_solarcell)
 
-                for r in range(len(self.I_solarcell_list)):
-                    self.P_solarcell = self.I_solarcell_list[r]*self.U_solarcell_list[r]
+                    self.P_solarcell = self.I_solarcell_list[l]*self.U_solarcell_list[l]
                     self.P_solarcell_list.append(self.P_solarcell)
+                    print(self.I_solarcell_list)
 
-                    self.R_var = (self.U_solarcell_list[r] - self.U_resistor_list[r])/(self.I_solarcell_list[r])
-                    self.R_var_list.append(self.R_var)
+                    if self.I_solarcell_list[l] != 0:
+                        self.R_var = (self.U_solarcell_list[l] - self.U_resistor_list[l])/(self.I_solarcell_list[l])
+                        self.R_var_list.append(self.R_var)
+                    else:
+                        self.R_var_list.append(100000)
 
                 self.R_var_list_mean.append(np.mean(self.R_var_list))
                 self.P_solarcell_list_mean.append(np.mean(self.P_solarcell_list))
