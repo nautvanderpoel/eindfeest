@@ -27,10 +27,10 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 plot = "eindfeest.solarcell_view:cmd_group"
+gui = "eindfeest.solarcell_gui:main"
 
 [tool.poe.tasks.design]
 shell = """
 pyside6-uic src/solarcell/graph.ui -o src/solarcell/designer.py
 """
 interpreter = ["posix", "powershell"]
-
