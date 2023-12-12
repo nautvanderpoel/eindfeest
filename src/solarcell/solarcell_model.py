@@ -49,10 +49,10 @@ class DiodeExperiment:
                     self.P_solarcell_list.append(self.P_solarcell)
 
                     if self.I_solarcell_list[l] != 0:
-                        self.R_var = (self.U_solarcell_list[l] - self.U_resistor_list[l])/(self.I_solarcell_list[l]) - 4.7
+                        self.R_var = (self.U_solarcell_list[l] - self.U_resistor_list[l])/(self.I_solarcell_list[l])
                         self.R_var_list.append(self.R_var)
                     else:
-                        self.R_var_list.append(10000)
+                        self.R_var_list.append(100000)
 
 
                 self.R_var_list_mean.append(np.mean(self.R_var_list))
