@@ -26,8 +26,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-plot = "eindfeest.solarcell_view:cmd_group"
-gui = "eindfeest.solarcell_gui:main"
+gui = "solarcell.solarcell_gui:main"
 
 [tool.poe.tasks.design]
 shell = """
