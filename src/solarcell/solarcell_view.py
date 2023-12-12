@@ -21,5 +21,7 @@ def plot():
     plt.ylabel("Current (I)")
     plt.show()
     plt.errorbar(P_solarcell_list_mean,R_var_list_mean, xerr =error_P_solarcell_list, yerr = error_R_var_list, fmt = '.' )
+    plt.xlabel("Power (W) solarcell")
+    plt.ylabel("Variable resistancte (Ohm)")
     plt.show()
 plot()

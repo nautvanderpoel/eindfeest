@@ -30,7 +30,7 @@ class DiodeExperiment:
     
     def scan(self,start,stop, number):
         # for n in range(number):
-            for i in range(start,stop):
+            for i in range(self.convert_voltage_adc(start),self.convert_voltage_adc(stop)):
                 
                 for w in range(number):
                     self.device.set_output_value(i)
@@ -47,13 +47,13 @@ class DiodeExperiment:
 
                     self.P_solarcell = self.I_solarcell_list[l]*self.U_solarcell_list[l]
                     self.P_solarcell_list.append(self.P_solarcell)
-                    print(self.I_solarcell_list)
 
                     if self.I_solarcell_list[l] != 0:
-                        self.R_var = (self.U_solarcell_list[l] - self.U_resistor_list[l])/(self.I_solarcell_list[l])
+                        self.R_var = (self.U_solarcell_list[l] - self.U_resistor_list[l])/(self.I_solarcell_list[l]) - 4.7
                         self.R_var_list.append(self.R_var)
                     else:
-                        self.R_var_list.append(100000)
+                        self.R_var_list.append(10000)
+
 
                 self.R_var_list_mean.append(np.mean(self.R_var_list))
                 self.P_solarcell_list_mean.append(np.mean(self.P_solarcell_list))
@@ -63,11 +63,10 @@ class DiodeExperiment:
 
                 # calculates the deviation of the central values
                 self.error_P_solarcell_list.append(np.std(self.U_solarcell_list)/(len(self.P_solarcell_list)**0.5))
-                self.error_R_var_list.append(np.std(self.R_var_list))/(len(self.R_var_list)**0.5)
+                self.error_R_var_list.append(np.std(self.R_var_list)/(len(self.R_var_list)**0.5))
 
                 self.error_U_solarcell_list.append(np.std(self.U_solarcell_list)/(len(self.U_solarcell_list)**0.5))
                 self.error_I_solarcell_list.append(np.std(self.I_solarcell_list)/(len(self.I_solarcell_list)**0.5))
-
         
                 self.U_solarcell_list.clear()
                 self.U_resistor_list.clear()
