@@ -30,7 +30,7 @@ class DiodeExperiment:
     
     def scan(self,start,stop, number):
         # for n in range(number):
-            for i in range(self.convert_voltage_adc(start),self.convert_voltage_adc(stop)):
+            for i in range(int((self.convert_voltage_adc(start))),int(self.convert_voltage_adc(stop))):
                 
                 for w in range(number):
                     self.device.set_output_value(i)
